@@ -13,7 +13,7 @@ module.exports = router => {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
-        offered: 'Offer successfully made',
+        offered: 'Success: offer made',
         rejected: 'Application successfully rejected',
         'change-offer-location': 'Offer successfully changed ',
         'change-offer-course': 'Offer successfully changed ',
@@ -21,9 +21,9 @@ module.exports = router => {
         'change-condition-status-to-met': 'Condition successfully updated to met',
         'change-condition-status-to-not-met': 'Condition successfully updated to not met',
         'change-condition-status-to-pending': 'Condition successfully updated to pending',
-        'offer-made-to-new-provider': 'Offer successfully made',
-        'offer-made-to-new-course': 'Offer successfully made',
-        'offer-made-to-new-location': 'Offer successfully made',
+        'offer-made-to-new-provider': 'Success: offer made',
+        'offer-made-to-new-course': 'Success: offer made',
+        'offer-made-to-new-location': 'Success: offer made',
         'feedback-given': 'Feedback successfully sent'
       }
     })
