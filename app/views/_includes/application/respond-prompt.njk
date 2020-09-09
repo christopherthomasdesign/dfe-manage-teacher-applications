@@ -2,6 +2,7 @@
 
   <div class="govuk-notification-banner" role="region" aria-labelledby="notification-banner-title">
     <h2 class="govuk-notification-banner__title" id="notification-banner-title">
+      <!--Use this span to make notification messaging consistent throughout your service--><span class="govuk-notification-banner__prefix">Notification:</span>
       You have 9 days to send a response. <a class="govuk-link" href="{{"/application/" + application.id + "/decision"}}">Respond to application</a>.
     </h2>
   </div>
@@ -10,6 +11,7 @@
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
      Respond to application
     </h2>
+    <!--Use this span to make notification messaging consistent throughout your service--><span class="govuk-notification-banner__prefix">Notification:</span>
     <p>You have 22 days to respond to this application. On 19 October 2020 this application will be automatically rejected.</p>
     {{ govukButton({
       text: "Respond to application",
