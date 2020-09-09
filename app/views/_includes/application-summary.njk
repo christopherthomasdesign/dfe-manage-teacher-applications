@@ -1,0 +1,32 @@
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-8",
+  rows: [{
+    key: {
+      text: "Candidate name"
+    },
+    value: {
+      text: name
+    }
+  }, {
+    key: {
+      text: "Provider"
+    },
+    value: {
+      html: application.provider
+    }
+  }, {
+    key: {
+      text: "Course"
+    },
+    value: {
+      html: application.course
+    }
+  }, {
+    key: {
+      text: "Preferred location"
+    },
+    value: {
+      html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+    }
+  }]
+}) }}

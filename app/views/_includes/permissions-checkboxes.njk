@@ -1,0 +1,62 @@
+{{ govukCheckboxes({
+  idPrefix: "makedecisions",
+  name: "makedecisions",
+  fieldset: {
+    legend: {
+      text: "Which organisations can make decisions?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org,
+      text: org
+    },
+    {
+      value: partner,
+      text: partner
+    }
+  ]
+}) }}
+
+{{ govukCheckboxes({
+  idPrefix: "safeguarding",
+  name: "safeguarding",
+  fieldset: {
+    legend: {
+      text: "Which organisations can view safeguarding information?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org,
+      text: org
+    },
+    {
+      value: partner,
+      text: partner
+    }
+  ]
+}) }}
+
+{{ govukCheckboxes({
+  idPrefix: "diversity",
+  name: "diversity",
+  fieldset: {
+    legend: {
+      text: "Which organisations can view diversity information?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org,
+      text: org
+    },
+    {
+      value: partner,
+      text: partner
+    }
+  ]
+}) }}

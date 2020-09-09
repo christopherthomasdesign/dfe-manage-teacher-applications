@@ -1,0 +1,39 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "timeline" %}
+{% set status = application.status %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = name %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash }}
+
+  {% set rbd = application.submittedDate | addDays(40) %}
+  {% set remaining = rbd | daysFromNow(rbd) %}
+
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
+
+  {% include "_includes/application/respond-prompt.njk" %}
+  {% include "_includes/application/defer-prompt.njk" %}
+  {% include "_includes/application/feedback-prompt.njk" %}
+
+  {% include "_includes/application/sub-nav.njk" %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      {{ appTimeline({items: timeline})}}
+
+
+
+
+    </div>
+  </div>
+{% endblock %}

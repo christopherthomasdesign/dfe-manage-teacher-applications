@@ -1,0 +1,43 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+  <form method="post">
+
+    {{ govukCheckboxes({
+      idPrefix: "settings",
+      name: "settings",
+      fieldset: {
+        legend: {
+          text: "Settings",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      items: [
+        {
+          value: "Turn on start new cycle",
+          text: "Turn on start new cycle",
+          hint: {
+            text: "Will show deferred offers that need confirming, pending conditions from previous cycle and the rest."
+          },
+          checked: checked('settings', 'Turn on start new cycle')
+
+        },
+        {
+          value: "hasCombinedConditions",
+          text: "Group conditions together",
+          hint: {
+            text: "Will ask if all conditions have been met rather than each one individually"
+          },
+          checked: checked('settings', 'hasCombinedConditions')
+
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
+{% endblock %}

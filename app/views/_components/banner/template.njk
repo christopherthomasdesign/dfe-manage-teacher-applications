@@ -1,0 +1,5 @@
+<div class="govuk-notification-banner{% if params.type == "success" %} govuk-notification-banner--success{% elif params.type == "warning" %} govuk-notification-banner--error{% endif %}{{- " " + params.classes if params.classes}}" {%- for attribute, value in params.attributes -%} {{ attribute }}="{{ value }}"{% endfor %} role="alert" tabindex="-1" data-module="initial-focus">
+  <div class="govuk-notification-banner__title">
+    {{- params.html | safe if params.html else params.text -}}
+  </div>
+</div>

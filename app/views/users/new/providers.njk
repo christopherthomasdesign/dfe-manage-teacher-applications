@@ -1,0 +1,50 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/users/new"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-xl">Invite user</span>
+        Select organisations this user will have access to
+      {% endset %}
+
+      <form novalidate action="/users/new/permissions">
+        {{ govukCheckboxes({
+          idPrefix: "provider",
+          name: "provider",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+
+          items: [
+            {
+              value: data.organisations[0].name,
+              text: data.organisations[0].name
+            },
+            {
+              value: data.organisations[4].name,
+              text: data.organisations[4].name
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

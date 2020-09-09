@@ -1,0 +1,96 @@
+{% set nationalityText %}
+  {% set nationalities = application.personalDetails.nationality %}
+  {%- for nationality in nationalities -%}
+    {{ (" and " if loop.last else ", ") if not loop.first }}{{ nationality }}
+  {%- endfor -%}
+{% endset %}
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Submitted"
+    },
+    value: {
+      text: application.submittedDate | date("d LLLL yyyy") + " at " + note.date | time
+    }
+  }, {
+    key: {
+      text: "Cycle"
+    },
+    value: {
+      text: application.cycle
+    }
+  },{
+    key: {
+      text: "Reference"
+    },
+    value: {
+      text: application.id
+    }
+  }]
+}) }}
+
+<p class="govuk-body"><a href="#" download>Download application (PDF)</a></p>
+
+<h2 class="govuk-heading-l govuk-!-margin-top-6">Applicant details</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Full name"
+    },
+    value: {
+      text: name
+    }
+  },  {
+    key: {
+      text: "Date of birth"
+    },
+    value: {
+      text: application.personalDetails.dateOfBirth | govukDate
+    }
+  },{
+    key: {
+      text: "Nationality"
+    },
+    value: {
+      text: nationalityText
+    }
+  },{
+    key: {
+      text: "Has the right to work or study in the UK?"
+    },
+    value: {
+      text: application.personalDetails.residency.rightToWorkStudy
+    }
+  } if application.personalDetails.residency, {
+    key: {
+      text: "Residency details"
+    },
+    value: {
+      text: application.personalDetails.residency.details
+    }
+  } if application.personalDetails.residency.details, {
+    key: {
+      text: "Phone number"
+    },
+    value: {
+      html: "<a href=\"tel:" + application.contactDetails.tel | replace(" ", "") + "\">" + application.contactDetails.tel + "</a>"
+    }
+  }, {
+    key: {
+      text: "Email address"
+    },
+    value: {
+      html: "<a href=\"mailto:" + application.contactDetails.email + "\">" + application.contactDetails.email + "</a>"
+    }
+  }, {
+    key: {
+      text: "Address"
+    },
+    value: {
+      html: application.contactDetails.address | toArray | join("<br>") if application.contactDetails.address else "No information shared"
+    }
+  }]
+}) }}
+

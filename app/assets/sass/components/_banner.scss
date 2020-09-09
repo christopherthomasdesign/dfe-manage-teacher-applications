@@ -1,0 +1,56 @@
+.app-banner {
+  @include govuk-text-colour;
+  @include govuk-responsive-padding(4);
+  @include govuk-responsive-margin(8, "bottom");
+  border: $govuk-border-width solid govuk-colour("blue");
+}
+
+.app-banner__icon {
+  fill: govuk-colour("blue");
+  float: left;
+  margin-right: govuk-spacing(2);
+}
+
+.app-banner__assistive {
+  @include govuk-visually-hidden;
+}
+
+.app-banner__message {
+  @include govuk-font($size: 19);
+  display: block;
+  overflow: hidden;
+}
+
+.app-banner__message *:last-child {
+  margin-bottom: 0;
+}
+
+.app-banner--success {
+  border-color: govuk-colour("green");
+
+  .app-banner__icon {
+    fill: govuk-colour("green");
+  }
+}
+
+.app-banner--warning {
+  border-color: govuk-colour("red");
+
+  .app-banner__icon {
+    fill: govuk-colour("red");
+  }
+}
+
+// .app-banner--yellow {
+//   background: govuk-tint(govuk-colour("yellow"), 85);
+//   // border-color: govuk-shade(govuk-colour("yellow"), 65);
+// }
+
+// .app-banner--purple {
+//   background: govuk-tint(govuk-colour("purple"), 95);
+//   // border-color: govuk-shade(govuk-colour("purple"), 20);
+// }
+
+// .app-banner--grey {
+//   border-color: govuk-colour("dark-grey");
+// }

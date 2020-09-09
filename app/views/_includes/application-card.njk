@@ -1,0 +1,35 @@
+<div class="app-application-card">
+
+  <div class="app-application-card__primary">
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
+      <a href="/application/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
+        {{ a.personalDetails.givenName }} {{ a.personalDetails.familyName }}
+      </a>
+    </h3>
+    <p class="govuk-!-font-size-16">{{ a.provider }}</p>
+    <p class="govuk-!-margin-bottom-0">{{ a.course }} at {{a.locationname}}</p>
+    <p class="govuk-caption-m govuk-!-font-size-16">Ratified by {{a.accreditingbody}}</p>
+  </div>
+
+  <div class="app-application-card__secondary">
+    <div class="app-application-card__status">
+      {{govukTag({
+        classes: a.status | statusClass,
+        text: a.status
+      })}}
+      {% if a.status == 'Submitted' %}
+        {% if a.daysToRespond == 0 %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-4">Less than a day to respond</p>
+        {% else %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-4">{{a.daysToRespond}} days left to respond</p>
+        {% endif %}
+      {% endif %}
+
+    </div>
+
+    <div>
+      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{a.cycle}}</p>
+    </div>
+  </div>
+
+</div>

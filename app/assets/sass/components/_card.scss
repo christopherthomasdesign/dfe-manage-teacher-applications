@@ -1,0 +1,11 @@
+.app-card {
+  border: 1px solid govuk-colour("mid-grey");
+  display: block;
+  padding: govuk-spacing(2);
+  margin-bottom: govuk-spacing(2);
+  text-decoration: none;
+
+  @include govuk-media-query($from: desktop) {
+    padding: govuk-spacing(4);
+  }
+}

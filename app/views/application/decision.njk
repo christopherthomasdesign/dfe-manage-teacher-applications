@@ -1,0 +1,68 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Respond to application" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {% set h1 %}
+    <span class="govuk-caption-xl">{{name}}</span>
+    Respond to application
+  {% endset %}
+
+  <form action="{{ formaction | default('') }}" method="post">
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          html: h1,
+          classes: "govuk-fieldset__legend--xl",
+          isPageHeading: true
+        }
+      },
+      idPrefix: "status",
+      name: "decision",
+      items: [{
+        value: "offer",
+        text: "Make an offer",
+
+        checked: checked("decision", "offer")
+      },
+      {
+        value: "different-course",
+        text: "Make an offer but change course",
+
+        checked: checked("decision", "different-course")
+      },{
+        value: "different-location",
+        text: "Make an offer but change main training location",
+
+        checked: checked("decision", "different-location")
+      },
+      {
+        value: "different-provider",
+        text: "Make an offer but change training provider",
+        hint: {
+                                text: "For example, to another organisation with courses you run or ratify"
+                            },
+
+        checked: checked("decision", "different-provider")
+      }, {
+        value: "reject",
+        text: "Reject application",
+        checked: checked("decision", "reject")
+      }]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  </form>
+  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+{% endblock %}

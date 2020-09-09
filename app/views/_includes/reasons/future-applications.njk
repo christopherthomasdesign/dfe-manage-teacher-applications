@@ -1,0 +1,21 @@
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Would you be interested in future applications from " + name + "?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  idPrefix: "rejection-future-applications",
+  name: "rejectionReasons[future-applications]",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("['rejectionReasons']['future-applications']", "Yes")
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("['rejectionReasons']['future-applications']", "No")
+  }]
+}) }}

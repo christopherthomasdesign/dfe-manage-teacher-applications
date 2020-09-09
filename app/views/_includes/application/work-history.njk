@@ -1,0 +1,28 @@
+{% set workHistory = application.workHistory
+  | toArray
+  | sort(attribute="startDate")
+%}
+{% if workHistory.length >= 1 %}
+  {% set rowData = [] %}
+  {% for item in workHistory %}
+    {% set org = item.org if item.category == "job" %}
+    {% set startDate = item.startDate | date("LLLL yyyy") %}
+    {% set endDate = item.endDate | date("LLLL yyyy") if item.endDate else "Present" %}
+
+    <div class="app-experience__item">
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.role + " – " + item.type if item.category == "job" else "Break (" + item.duration + ")" }}</h3>
+      <p class="govuk-body govuk-!-margin-bottom-1">{{org}}</p>
+      <p class="govuk-caption-m govuk-!-font-size-16">{{[startDate, endDate] | join(" - ")}}</p>
+      <p class="govuk-body">{{ item.description }}</p>
+      {%- if item.workedWithChildren == "Yes" %}
+        <p class="govuk-body govuk-!-font-size-16">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Worked with children</p>
+      {%- endif %}
+    </div>
+  {% endfor %}
+{% else %}
+  <p class="govuk-body">Candidate has no work history.</p>
+{% endif %}

@@ -1,0 +1,153 @@
+{% set candidateActionReasonsHtml %}
+  {% set fieldName = "actions-reasons" %}
+  {% set checkboxValue = "Didn’t reply to our interview offer" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Didn’t attend interview" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Other" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons['actions-reasons-other']}}</p>
+  {% endif %}
+{% endset %}
+
+{% set missingQualificationsReasonsHtml %}
+  {% set fieldName = "missing-qualifications-reasons" %}
+  {% set checkboxValue = "No Maths GCSE grade 4 (C) or above, or valid equivalent" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "No English GCSE grade 4 (C) or above, or valid equivalent" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "No degree" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Degree doesn’t meet course requirements" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Other" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons['actions-reasons-other']}}</p>
+  {% endif %}
+{% endset %}
+
+{% set applicationQualityReasonsHtml %}
+  {% set fieldName = "application-quality-reasons" %}
+  {% set checkboxValue = "Personal statement" %}
+  {% set textBoxName = "application-quality-reasons-personal-statement" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Subject knowledge" %}
+  {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Other" %}
+  {% set textBoxName = "application-quality-reasons-other" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+{% endset %}
+
+{% set honestyReasonsHtml %}
+  {% set fieldName = "honesty-reasons" %}
+  {% set checkboxValue = "Information given on application form false or inaccurate" %}
+  {% set textBoxName = "honesty-reasons-false-information" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Evidence of plagiarism in personal statement or elsewhere" %}
+  {% set textBoxName = "honesty-reasons-plagiarism" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "References didn’t support application" %}
+  {% set textBoxName = "honesty-reasons-references" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Other" %}
+  {% set textBoxName = "honesty-reasons-other" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+{% endset %}
+
+{% set safeguardingReasonsHtml %}
+  {% set fieldName = "safeguarding-reasons" %}
+
+  {% set checkboxValue = "Information disclosed by candidate makes them unsuitable to work with children" %}
+  {% set textBoxName = "safeguarding-reasons-disclosed-information" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Information revealed by our vetting process makes the candidate unsuitable to work with children" %}
+  {% set textBoxName = "safeguarding-reasons-vetting-information" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Other" %}
+  {% set textBoxName = "safeguarding-reasons-other" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+{% endset %}
+
+{% set anotherIssueHtml %}
+  {% set fieldName = "another-issue" %}
+  <p>{{rejectedReasons[fieldName]}}</p>
+
+  {% set checkboxValue = "Yes" %}
+  {% set textBoxName = "another-issue-details" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>Other details: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+{% endset %}
+
+{% set otherFeedbackHtml %}
+  {% set fieldName = "other-feedback" %}
+  <p>{{rejectedReasons[fieldName]}}</p>
+
+  {% set checkboxValue = "Yes" %}
+  {% set textBoxName = "other-feedback-details" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>Other details: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+{% endset %}
+
+{% set futureApplicationsHtml %}
+  {% set fieldName = "future-applications" %}
+  <p>{{rejectedReasons[fieldName]}}</p>
+
+  {% set checkboxValue = "Yes" %}
+  {% set textBoxName = "future-applications-details" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>Other details: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+{% endset %}

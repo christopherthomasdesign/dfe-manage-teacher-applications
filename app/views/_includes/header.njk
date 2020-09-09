@@ -1,0 +1,33 @@
+{% set alertsLinkHtml %}
+  <span class="app-notification-link">
+    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
+  </span>
+{% endset %}
+
+{{ govukHeader({
+  containerClasses: "govuk-width-container",
+  "navigationClasses": "govuk-header__navigation--end",
+  "productName": serviceName,
+  "navigation": [
+    {
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
+    } if 1 == 2, {
+      href: "/organisations",
+      text: "Organisations",
+      active: primaryNavId == 'organisations'
+    }, {
+      href: "/users",
+      text: "Users",
+      active: primaryNavId == 'users'
+    }, {
+      href: "/account",
+      text: "Account",
+      active: primaryNavId == 'account'
+    },  {
+      href: "/",
+      text: "Sign out"
+    }
+  ]
+}) }}

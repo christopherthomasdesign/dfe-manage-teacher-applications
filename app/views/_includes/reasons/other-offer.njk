@@ -1,0 +1,38 @@
+{% set otherOfferDetailsHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details about the course you offered"
+
+    },
+    id: "rejection-other-offer-details",
+    name: "rejectionReasons[other-offer-details]",
+    value: data['rejectionReasons']["other-offer-details"]
+  }) }}
+{% endset %}
+
+
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it because you offered them a place on another course?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  idPrefix: "rejection-other-offer",
+  name: "rejectionReasons[other-offer]",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("['rejectionReasons']['other-offer']", "Yes"),
+    conditional: {
+      html: otherOfferDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("['rejectionReasons']['other-offer']", "No")
+  }]
+})}}

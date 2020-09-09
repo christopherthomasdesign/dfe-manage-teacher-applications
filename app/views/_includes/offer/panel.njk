@@ -1,0 +1,141 @@
+
+<div class="app-offer-panel">
+
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-3">
+    Offer
+  </h2>
+
+  <p class="govuk-body">
+
+    {% if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred" %}
+      <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
+    {% endif %}
+    {% if application.status == "Accepted" or application.status == "Conditions met" %}
+      or <a href="/application/{{application.id}}/offer/defer/check">defer offer</a>
+    {% endif %}
+  </p>
+
+  <h3 class="govuk-heading-m">Course details</h2>
+
+{{ govukSummaryList({
+  rows: [
+  {
+    key: {
+      text: "Provider"
+    },
+    value: {
+      html: application.provider
+    },
+    actions: {
+      items: [
+        {
+          href: "/application/"+application.id+"/offer/change-provider",
+          text: "Change",
+          visuallyHiddenText: ""
+        }
+      ]
+    } if application.status == "Offered"
+  },
+  {
+    key: {
+      text: "Course"
+    },
+    value: {
+      html: application.course
+    },
+    actions: {
+      items: [
+        {
+          href: "/application/"+application.id+"/offer/change-course",
+          text: "Change",
+          visuallyHiddenText: ""
+        }
+      ]
+    } if application.status == "Offered"
+  },
+  {
+    key: {
+      text: "Location"
+    },
+    value: {
+      html: application.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+    },
+    actions: {
+      items: [
+        {
+          href: "/application/"+application.id+"/offer/change-location",
+          text: "Change",
+          visuallyHiddenText: ""
+        }
+      ]
+    } if application.status == "Offered"
+  },
+  {
+    key: {
+      text: "Full time or part time"
+    },
+    value: {
+      html: 'Full time'
+    },
+    actions: {
+      items: [
+        {
+          href: "/application/"+application.id+"/offer/change-study-mode",
+          text: "Change",
+          visuallyHiddenText: ""
+        }
+      ]
+    } if application.status == "Offered"
+  }
+]})}}
+
+{% if application.offer.withdrawnReasons %}
+  <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
+  {% set rejectedDate = application.rejectedDate %}
+  {% set rejectionReasons = application.rejectedReasons %}
+  {% set showRejectedDate = true %}
+
+  <p>You sent the following feedback to the candidate on {{rejectedDate | date("d LLL yyyy")}}.</p>
+
+  {% include "_includes/candidate-feedback.njk" %}
+{% endif %}
+
+{% if application.offer and conditions %}
+
+  <h2 class="govuk-heading-m">Conditions</h2>
+  {% if checked("settings", "hasCombinedConditions") %}
+    <p><a href="#" class="">Mark all conditions as met</a></p>
+  {% endif %}
+  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
+    {% for condition in conditions %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{condition.description}}
+        </dt>
+        <dd class="govuk-summary-list__value app-conditions-list__tag">
+          {% if condition.status == "Pending" %}
+              {% set statusClass = "app-tag--grey" %}
+            {% elseif condition.status == "Met" %}
+              {% set statusClass = "app-tag--green" %}
+            {% elseif condition.status == "Not met" %}
+              {% set statusClass = "app-tag--red" %}
+            {% endif %}
+            {{govukTag({ text: condition.status, classes: statusClass })}}
+        </dd>
+        {% if not checked("settings", "hasCombinedConditions") %}
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
+            Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
+          </dd>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </dl>
+
+
+{% endif %}
+
+{% if application.offer.recommendations %}
+  <h2 class="govuk-heading-s">Recommendations</h2>
+  <p class="govuk-body">{{application.offer.recommendations}}</p>
+{% endif %}
