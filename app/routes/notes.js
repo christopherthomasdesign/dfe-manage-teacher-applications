@@ -9,7 +9,7 @@ module.exports = router => {
       flash: req.flash('success'),
       overrideValue: req.query.flash,
       map: {
-        'note-added': 'Success: Note added'
+        'note-added': 'Success: note added'
       }
     })
 
