@@ -8,4 +8,9 @@ if (window.console && window.console.info) {
 $(document).ready(function () {
   GOVUK.modules.start()
   window.GOVUKFrontend.initAll()
+  
+  var focusElement = document.querySelector('[data-module="initial-focus"]')
+    if (focusElement) {
+      focusElement.focus()
+    }
 })
